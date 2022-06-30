@@ -1,3 +1,13 @@
+// Define movement button functionality
+function move (direction) {
+    var data = {direction: direction};
+    fetch("/movement/", {
+        method: "POST",
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
+    });
+}
+
 // Collapsible help dialog
 var coll = document.getElementsByClassName("collapsible");
 for (let i = 0; i < coll.length; i++) {

@@ -22,22 +22,22 @@
         </div>
         
         <div id="control-panel-container">
-            <button id="headlights-button">
+            <button id="headlights-button" onmousedown="move('lights')">
                 <img src="{{url_for('static', filename='icons/lights.png')}}">
             </button>
             <img src="{{url_for('static', filename='icons/hot_wheels.png')}}" id="checkered-flag">
             <img src="{{url_for('static', filename='icons/car.png')}}" id="car">
             <div id="arrow-panel">
-                <button id="button-forward">
+                <button id="button-forward" onmousedown="move('forward')" onmouseup="move('stop')">
                     <img src="{{url_for('static', filename='icons/fancy_right.png')}}">
                 </button>
-                <button id="button-left">
+                <button id="button-left" onmousedown="move('left')" onmouseup="move('stop')">
                     <img src="{{url_for('static', filename='icons/fancy_right.png')}}">
                 </button>
-                <button id="button-right">
+                <button id="button-right" onmousedown="move('right')" onmouseup="move('stop')">
                     <img src="{{url_for('static', filename='icons/fancy_right.png')}}">
                 </button>
-                <button id="button-backward">
+                <button id="button-backward" onmousedown="move('backward')" onmouseup="move('stop')">
                     <img src="{{url_for('static', filename='icons/fancy_right.png')}}">
                 </button>
             </div>

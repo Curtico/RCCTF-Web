@@ -88,33 +88,38 @@ def driver_challenge():
     return render_template('driver-challenge.html')
     
 @app.route('/movement/', methods=['POST'])
-def move_input():
+def movement():
     content = request.json
+    cookies = request.cookies.get('SESSION').split('.')
 
-    if content['zoom'] == "forward":
+    if content['direction'] == "forward":
         #forward()
         print("User requested forward movement...")
         return "Forward movement request successful!"
 
-    elif content['zoom'] == "left":
+    elif content['direction'] == "left":
         #left()
         print("User requested left movement...")
         return "Left movement request successful!"
 
-    elif content['zoom'] == "right":
+    elif content['direction'] == "right":
         #right()
         print("User requested right movement...")
         return "Right movement request successful!"
 
-    elif content['zoom'] == "backward":
+    elif content['direction'] == "backward":
         #backward()
         print("User requested backward movement...")
         return "Backward movement request successful!"
 
-    elif content['zoom'] == "stop":
+    elif content['direction'] == "stop":
         #stop()
         print("User requested to stop movement...")
         return "Stopping movement!"
+    elif content['direction'] == "lights":
+        #lights()
+        print("User found the light switch...")
+        return "Toggling headlights"
 
     else:
         return "Bad movement request!"
