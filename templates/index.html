@@ -1,0 +1,67 @@
+<html>
+    <head>
+        <title>RCCTF Web</title>
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
+    </head>
+
+    <body>
+        <nav>
+            <a href="/"><img src="{{url_for('static', filename='icons/home.png')}}" width="20px" height="20px"></a>
+            <a href="/post-demo/">POST_DEMO</a>
+            <a href="/driver">DRIVER_CHALLENGE</a>
+            <a href="#">NAV_LINK_3</a>
+            <a href="#">NAV_LINK_4</a>
+            <button type="button" class="collapsible"><img src="{{url_for('static', filename='icons/help.png')}}" height="26px" width="26px"></button>
+        </nav>
+        <div id="help-dialog">
+            <p>
+                <h2>Welcome to RCCTF</h2><br><br>
+                There are four flags hidden on this site.  Each flag will enable one of the motors on the car.  All of the flags follow this format: the motor it activates followed by a string enclosed in curly braces.  For example: front-right{example_flag}<br><br>
+                Use what you've learned to gain full control of the car!
+            </p>
+        </div>
+        
+        <div id="control-panel-container">
+            <button id="headlights-button">
+                <img src="{{url_for('static', filename='icons/lights.png')}}">
+            </button>
+            <img src="{{url_for('static', filename='icons/hot_wheels.png')}}" id="checkered-flag">
+            <img src="{{url_for('static', filename='icons/car.png')}}" id="car">
+            <div id="arrow-panel">
+                <button id="button-forward">
+                    <img src="{{url_for('static', filename='icons/fancy_right.png')}}">
+                </button>
+                <button id="button-left">
+                    <img src="{{url_for('static', filename='icons/fancy_right.png')}}">
+                </button>
+                <button id="button-right">
+                    <img src="{{url_for('static', filename='icons/fancy_right.png')}}">
+                </button>
+                <button id="button-backward">
+                    <img src="{{url_for('static', filename='icons/fancy_right.png')}}">
+                </button>
+            </div>
+            <div class="flag-input" id="front-left-motor">
+                <p class="left-of-car">Front-left motor: DISABLED</p>
+                <button class="flag-input-button right-justified" type="button">➤</button>
+                <input class="flag-input-text left-justified" type="text">
+            </div>
+            <div class="flag-input" id="front-right-motor">
+                <p class="right-of-car">Front-right motor: DISABLED</p>
+                <input class="flag-input-text right-justified" type="text">
+                <button class="flag-input-button left-justified" type="button">➤</button>
+            </div>
+            <div class="flag-input" id="rear-left-motor">
+                <p class="left-of-car">Rear-left motor: DISABLED</p>
+                <button class="flag-input-button right-justified" type="button">➤</button>
+                <input class="flag-input-text left-justified" type="text">
+            </div>
+            <div class="flag-input" id="rear-right-motor">
+                <p class="right-of-car">Rear-right motor: DISABLED</p>
+                <input class="flag-input-text right-justified" type="text">
+                <button class="flag-input-button left-justified" type="button">➤</button>
+            </div>
+        </div>
+        <script src="{{url_for('static', filename='js/app.js')}}"></script>
+    </body>
+</html>

@@ -1,0 +1,87 @@
+<head>
+    <title>Move the car...</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/styles.css')}}">
+</head>
+
+<body>
+        <script type="text/javascript">
+            // STORE TOKEN INTO LOCALSTORAGE
+            localStorage.setItem("authorized_to_drive", "False");
+        </script>
+        <nav>
+            <a href="/"><img src="{{url_for('static', filename='icons/home.png')}}" style="width:20px; height:20px;"></a>
+            <a href="/post-demo/">POST_DEMO</a>
+            <a href="/driver">DRIVER_CHALLENGE</a>
+            <a href="#">NAV_LINK_3</a>
+            <a href="#">NAV_LINK_4</a>
+        </nav>
+        <center style="padding-top: 50px">
+            <button id="button-forward" onmousedown="move('forward')" onmouseup="move('stop')">
+                <img src="{{ url_for('static', filename='icons/fancy_right.png') }}" height="100" width="100" style="transform:rotate(-90deg);"/>
+            </button>
+            
+            <br /><br />
+            
+            <button id="button-left" onmousedown="move('left')" onmouseup="move('stop')">
+                <img src="{{ url_for('static', filename='icons/fancy_right.png') }}" height="100" width="100" style="transform:rotate(180deg);"/>
+            </button>
+            
+            <img src="{{ url_for('static', filename='icons/hot_wheels.png') }}" height="100" width="100" style="transform:rotate(0deg);"/>
+            
+            <button id="button-right" onmousedown="move('right')" onmouseup="move('stop')">
+                <img src="{{ url_for('static', filename='icons/fancy_right.png') }}" height="100" width="100" style="transform:rotate(0deg);"/>
+            </button>
+            
+            <br /><br />
+            
+            <button id="button-backward" onmousedown="move('backward')" onmouseup="move('stop')">
+                <img src="{{ url_for('static', filename='icons/fancy_right.png') }}" height="100" width="100" style="transform:rotate(90deg);"/>
+            </button>
+            
+            <br /><p id="reaction" />
+            
+        </center>
+</body>
+
+<script>
+    function move(param) {
+        auth_token = localStorage.getItem("authorized_to_drive");
+        if (auth_token.localeCompare('True') == 0) {
+            var data;
+            if (param.localeCompare('forward') == 0) {
+                data = {zoom: "forward"};
+                document.getElementById("reaction").innerHTML = "I'm moving forward!";
+
+            } else if (param.localeCompare('left') == 0) {
+                data = {zoom: "left"};
+                document.getElementById("reaction").innerHTML = "I'm moving left!";
+            
+            } else if (param.localeCompare('right') == 0) {
+                data = {zoom: "right"};
+                document.getElementById("reaction").innerHTML = "I'm moving right!";
+            
+            } else if (param.localeCompare('backward') == 0) {
+                data = {zoom: "backward"};
+                document.getElementById("reaction").innerHTML = "I'm moving backward!";
+                
+            } else if (param.localeCompare('stop') == 0) {
+                data = {zoom: "stop"};
+                document.getElementById("reaction").innerHTML = "I'm no longer moving!";
+            
+            } else {
+                data = {zoom: "never gets here"};
+            }
+            
+            fetch("/movement/", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify(data)
+            }).then(res => {
+                console.log("Request complete! response:", res);
+            });
+        } else {
+            document.getElementById("reaction").innerHTML = "You're not authorized to drive this vehicle...";
+        }
+        
+    }
+</script>
