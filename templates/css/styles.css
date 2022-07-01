@@ -70,9 +70,9 @@ nav button.collapsible {
 }
 
 #car {
-    grid-column-start: 2;
+    grid-column-start: 3;
     grid-row-start: 2;
-    grid-row-end: 4;
+    grid-row-end: 7;
     display :flex;
     margin: auto;
 }
@@ -84,6 +84,26 @@ nav button.collapsible {
     height: 200px;
     margin: auto;
     display:flex;
+}
+
+#event-log-pane {
+    grid-column-start: 2;
+    grid-row-start: 2;
+    grid-row-end: 6;
+    background-color: white;
+    padding: 14px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: end safe;
+    overflow-y: auto;
+    border-radius: 10px;
+    border: 2px solid black;
+    white-space: pre-wrap;
+    height: 365px;
+}
+#event-log-pane p {
+    margin: 0;
+    margin-top: auto;
 }
 
 .flag-input {
@@ -110,15 +130,9 @@ nav button.collapsible {
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.2s;
-}
-.flag-input p.left-of-car {
     justify-self: end;
     grid-column-start: 2;
-}
-.flag-input p.right-of-car {
-    justify-self: start;
-    grid-column-start: 1;
-    grid-column-end: 3;
+    width: 245px;
 }
 
 .flag-input-text {
@@ -148,21 +162,21 @@ nav button.collapsible {
     justify-self: start;
 }
 
-#front-left-motor {
+#forward-movement {
     grid-column-start: 1;
     grid-row-start: 2;
 }
-#rear-left-motor {
+#right-movement {
     grid-column-start: 1;
-    grid-row-start: 3;
+    grid-row-start: 4;
 }
-#front-right-motor {
-    grid-column-start: 3;
-    grid-row-start:  2;
+#left-movement {
+    grid-column-start: 1;
+    grid-row-start:  3;
 }
-#rear-right-motor {
-    grid-column-start: 3;
-    grid-row-start: 3;
+#backward-movement {
+    grid-column-start: 1;
+    grid-row-start: 5;
 }
 
 #button-home {

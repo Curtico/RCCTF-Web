@@ -16,7 +16,7 @@
         <div id="help-dialog">
             <p>
                 <h2>Welcome to RCCTF</h2><br><br>
-                There are four flags hidden on this site.  Each flag will enable one of the motors on the car.  All of the flags follow this format: the motor it activates followed by a string enclosed in curly braces.  For example: front-right{example_flag}<br><br>
+                There are four flags hidden on this site.  Each flag will enable one of the motors on the car.  All of the flags follow this format: flag{some_random_text}<br><br>
                 Use what you've learned to gain full control of the car!
             </p>
         </div>
@@ -41,26 +41,27 @@
                     <img src="{{url_for('static', filename='icons/fancy_right.png')}}">
                 </button>
             </div>
-            <div class="flag-input" id="front-left-motor">
-                <p class="left-of-car">Front-left motor: DISABLED</p>
+            <div class="flag-input" id="forward-movement">
+                <p>Forward movement: DISABLED</p>
                 <button class="flag-input-button right-justified" type="button">➤</button>
                 <input class="flag-input-text left-justified" type="text">
             </div>
-            <div class="flag-input" id="front-right-motor">
-                <p class="right-of-car">Front-right motor: DISABLED</p>
-                <input class="flag-input-text right-justified" type="text">
-                <button class="flag-input-button left-justified" type="button">➤</button>
-            </div>
-            <div class="flag-input" id="rear-left-motor">
-                <p class="left-of-car">Rear-left motor: DISABLED</p>
+            <div class="flag-input" id="left-movement">
+                <p>Left movement: DISABLED</p>
                 <button class="flag-input-button right-justified" type="button">➤</button>
                 <input class="flag-input-text left-justified" type="text">
             </div>
-            <div class="flag-input" id="rear-right-motor">
-                <p class="right-of-car">Rear-right motor: DISABLED</p>
-                <input class="flag-input-text right-justified" type="text">
-                <button class="flag-input-button left-justified" type="button">➤</button>
+            <div class="flag-input" id="right-movement">
+                <p>Right movement: DISABLED</p>
+                <button class="flag-input-button right-justified" type="button">➤</button>
+                <input class="flag-input-text left-justified" type="text">
             </div>
+            <div class="flag-input" id="backward-movement">
+                <p>Backward movement: DISABLED</p>
+                <button class="flag-input-button right-justified" type="button">➤</button>
+                <input class="flag-input-text left-justified" type="text">
+            </div>
+            <div id="event-log-pane"><p>Welcome to RCCTF<p></div>
         </div>
         <script src="{{url_for('static', filename='js/app.js')}}"></script>
     </body>
