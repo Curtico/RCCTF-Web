@@ -2,8 +2,21 @@
 var eventPane = document.getElementById("event-log-pane").getElementsByTagName("p")[0];
 
 // Define movement button functionality
+var lights_on = false;
 function move (direction) {
     var data = {direction: direction};
+    
+    if (direction == "lights") {
+        if (lights_on) {
+            data = {direction: "lights_off"};
+            lights_on = false;
+        }
+        else {
+            data = {direction: "lights_on"};
+            lights_on = true;
+        }
+    }
+    
     fetch("/movement/", {
         method: "POST",
         headers: {'Content-Type': 'application/json'},

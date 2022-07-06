@@ -5,8 +5,8 @@ import my_i2c
 
 app = Flask(__name__, static_url_path="", static_folder="templates")
 
-ic2_bus = my_i2c.make_bus()
-my_i2c.motor_slow(ic2_bus)
+#ic2_bus = my_i2c.make_bus()
+#my_i2c.motor_slow(ic2_bus)
 
 headlights_on = False
 
@@ -81,14 +81,12 @@ def authenticate_flag():
     else:
         return "flag_incorrect"
     
-@app.route("/post-demo/", methods=['POST', 'GET'])
+@app.route("/calculator", methods=['GET', 'POST'])
 def post_demo():
-    if request.method != 'POST':
-        return render_template('bad-request.html')
+    if request.method == 'GET':
+        return render_template('calculator.html')
     else:
-        content = request.form['message']
-        print(content)
-        return content
+        return str(eval(request.json['equation']))
         
 @app.route("/driver")
 def driver_challenge():
@@ -102,14 +100,14 @@ def movement():
     if content['direction'] == "forward":
         if cookies[0] == valid_cookies[0]:
             print("Moving forward...")
-            my_i2c.forward(ic2_bus)
+            #my_i2c.forward(ic2_bus)
             return "Moving forward..."
         else:
             return "Forward movement not authorized"
 
     elif content['direction'] == "left":
         if cookies[1] == valid_cookies[1]:
-            my_i2c.turn_left(ic2_bus)
+            #my_i2c.turn_left(ic2_bus)
             print("Moving left...")
             return "Moving left..."
         else:
@@ -117,7 +115,7 @@ def movement():
 
     elif content['direction'] == "right":
         if cookies[2] == valid_cookies[2]:
-            my_i2c.turn_right(ic2_bus)
+            #my_i2c.turn_right(ic2_bus)
             print("Moving right...")
             return "Moving right..."
         else:
@@ -125,23 +123,26 @@ def movement():
 
     elif content['direction'] == "backward":
         if cookies[3] == valid_cookies[3]:
-            my_i2c.backward(ic2_bus)
+            #my_i2c.backward(ic2_bus)
             print("Moving backward...")
             return "Moving backward..."
         else:
             return "Backward movement not authorized"
 
     elif content['direction'] == "stop":
-        my_i2c.stop(ic2_bus)
+        #my_i2c.stop(ic2_bus)
         print("Stopping...")
         return "Stopping..."
-    elif content['direction'] == "lights":
-        if headlights_on:
-            my_i2c.lights_off(ic2_bus)
-        else:
-            my_i2c.lights_on(ic2_bus)
-        print("User found the light switch...")
-        return "Toggling headlights..."
+        
+    elif content['direction'] == "lights_on":
+        #my_i2c.lights_on(ic2_bus)
+        print("Lights on")
+        return "Lights on"
+        
+    elif content['direction'] == "lights_off":
+        #my_i2c.lights_off(ic2_bus)
+        print("Lights off")
+        return "Lights off"
 
     else:
         return "Bad movement request"
