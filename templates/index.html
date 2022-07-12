@@ -7,24 +7,35 @@
     <body>
         <nav>
             <a href="/"><img src="{{url_for('static', filename='icons/home.png')}}" width="20px" height="20px"></a>
+            <a href="/login">Admin Dashboard</a>
+            <a href="/flag-generator">Flag Generator</a>
             <a href="/calculator">Calculcator</a>
-            <a href="/driver">DRIVER_CHALLENGE</a>
-            <a href="#">NAV_LINK_3</a>
-            <a href="#">NAV_LINK_4</a>
             <button type="button" class="collapsible"><img src="{{url_for('static', filename='icons/help.png')}}" height="26px" width="26px"></button>
         </nav>
         <div id="help-dialog">
             <p>
                 <h2>Welcome to RCCTF</h2><br><br>
-                There are four flags hidden on this site.  Each flag will enable one of the motors on the car.  All of the flags follow this format: flag{some_random_text}<br><br>
+                There are four flags hidden on this site.  Each flag will enable one direction of movement on the car.  All of the flags follow this format: flag{some_random_text}<br><br>
+                
+                These challenges unlock these directions:<br><br>
+                    hidden flag ...... forward movement<br>
+                    Admin Dashboard .. leftward movement<br>
+                    Flag Generator ... rightward movement<br>
+                    Calculator ....... backward movement<br><br><br>
+                
                 Use what you've learned to gain full control of the car!
             </p>
         </div>
         
         <div id="control-panel-container">
-            <button id="headlights-button" onmousedown="move('lights')">
-                <img src="{{url_for('static', filename='icons/lights.png')}}">
-            </button>
+            <div id="extra-buttons-container">
+                <button onmousedown="move('lights')">
+                    <img src="{{url_for('static', filename='icons/lights.png')}}">
+                </button>
+                <button onmousedown="move('spin')">
+                    <img src="{{url_for('static', filename='icons/spinning-arrows.png')}}">
+                </button>
+            </div>
             <img src="{{url_for('static', filename='icons/hot_wheels.png')}}" id="checkered-flag">
             <img src="{{url_for('static', filename='icons/car.png')}}" id="car">
             <div id="arrow-panel">
